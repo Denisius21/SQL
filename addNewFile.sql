@@ -4,7 +4,7 @@ VALUES
 ('5', 'Big foot'),
 ('5', 'Mask');
 
-INSERT INTO like_dislike (video_id, like_dislike, user_like_dislike_first_name)
+INSERT INTO like_dislike (video_id, like_dislike, user_id)
 VALUES
 ('1', true, '2'),
 ('7', false, '2');

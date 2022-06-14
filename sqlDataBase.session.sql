@@ -23,17 +23,17 @@ DROP TABLE "videos";
 
 
 CREATE TABLE like_dislike (
-  id serial PRIMARY KEY,
+  PRIMARY KEY (video_id,user_id),
   video_id int NOT NULL REFERENCES videos,
   like_dislike boolean,
-  user_like_dislike_first_name int NOT NULL REFERENCES videos
+  user_id int NOT NULL REFERENCES users
 );
 DROP TABLE like_dislike;
 
 CREATE TABLE comments_video(
   id serial PRIMARY KEY,
   comments_video varchar (100),
-  comments_id int NOT NULL REFERENCES videos,
+  comments_id int REFERENCES comments_video,
    user_id int NOT NULL REFERENCES users,
    title_video_id int NOT NULL REFERENCES videos
 );
@@ -50,5 +50,5 @@ JOIN like_dislike ON like_dislike.video_id = videos.id;
 
 SELECT comments_video.comments_video, videos.user_id, videos.title_video,
 comments_video.user_id FROM comments_video
-JOIN videos ON videos.user_id = users.id
+JOIN videos ON comments_video.title_video_id = video_id
 JOIN users ON comments_video.user_id = users.id;
